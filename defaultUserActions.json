@@ -1,0 +1,16 @@
+{
+  "actions": [
+    {
+      "name": "viewMainApplication",
+      "description": "View home page of application"
+    },
+    {
+      "name": "viewProducts",
+      "description": "View available products"
+    },
+    {
+      "name": "addToCart",
+      "description": "Add product to cart"
+    }
+  ]
+}
