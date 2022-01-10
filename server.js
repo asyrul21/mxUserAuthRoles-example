@@ -59,24 +59,19 @@ app.use(errorHandler);
 
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
-// module.exports =
-//   process.env.NODE_ENV === "test"
-//     ? server.listen(
-//         PORT,
-//         console.log(
-//           `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
-//         )
-//       )
-//     : // wait for the database is loaded before starting listening
-//       EM.on("initializationDone", () => {
-//         server.listen(PORT, () => {
-//           console.log(
-//             `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
-//           );
-//         });
-//       });
-
-server.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
+module.exports =
+  process.env.NODE_ENV === "test"
+    ? server.listen(
+        PORT,
+        console.log(
+          `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+        )
+      )
+    : // wait for the database is loaded before starting listening
+      EM.on("initializationDone", () => {
+        server.listen(PORT, () => {
+          console.log(
+            `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+          );
+        });
+      });
